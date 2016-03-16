@@ -1,0 +1,182 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+@import url(../warp/css/modules.css);
+
+
+/* Module Badges
+----------------------------------------------------------------------------------------------------*/
+
+.module .badge {
+	width: 32px;
+	height: 22px;
+	background: url(../images/module_badges.png) 0 0 no-repeat;
+}
+ 
+.module .badge-hot { background-position: 0 0; }
+.module .badge-top { background-position: 0 -25px; }
+.module .badge-free { background-position: 0 -50px; }
+.module .badge-new { background-position: 0 -75px; }
+
+
+/*
+ * module: border
+ */
+ 
+div.mod-border {
+	padding: 7px;
+	background: url(../images/module_border_bg.png) 0 0 repeat;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+div.mod-border h3.header {
+	padding-bottom: 15px;
+	background: url(../images/module_border_header.png)0 100% repeat-x ;
+}
+
+div.box-2 {
+padding: 12px;
+border: 1px solid #ffffff;
+background: #F8F8FA;
+overflow: hidden;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+/* Module Icons
+----------------------------------------------------------------------------------------------------*/
+
+.module .module-title .icon { background: url(../images/module_icons.png) 0 0 no-repeat; }
+
+.module .module-title .icon-download { background-position: 0 0; }
+.module .module-title .icon-twitter { background-position: 0 -30px; }
+.module .module-title .icon-mail { background-position: 0 -60px; }
+.module .module-title .icon-bubble { background-position: 0 -90px; }
+.module .module-title .icon-login { background-position: 0 -120px; }
+.module .module-title .icon-cart { background-position: 0 -150px; }
+
+
+/* Module Type: Box
+----------------------------------------------------------------------------------------------------*/
+
+.mod-box {
+	padding: 15px;
+	border: 1px solid #ddd;
+}
+
+
+div.mod-box {
+	padding: 15px;
+	background: url(../images/module_box_bg.png) 0 0 repeat;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	overflow: hidden;
+}
+
+div.mod-box h3.header {
+	padding-bottom: 10px;
+	background: url(../images/module_box_header.png) 0 100% repeat-x ;
+}
+
+
+div.mod-gold {
+    background: url("../images/module_gold_bg.png") repeat scroll 0 0 transparent;
+    border-radius: 7px 7px 7px 7px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+div.mod-boxmenu { 
+	color: #4070A3;
+    font-size: 13px;
+    height: 27px;
+    line-height: 27px;
+    text-indent: 5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+div.mod-darkblue {
+    background: url("../images/module_darkblue_bg.png") repeat scroll 0 0 transparent;
+    border-radius: 7px 7px 7px 7px;
+    overflow: hidden;
+    padding: 15px;
+	
+}
+
+div.mod-menu1 {
+    background: #eeeeee;
+    border-radius: 7px;
+    overflow: hidden;
+    padding: 15px;
+    margin-top: 15px;
+	color: #4070A3;
+    font-size: 13px;
+    line-height: 27px;
+    text-indent: 5px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+div.mod-box1 {
+    background: none repeat scroll 0 0 #6D809E;
+    color: #FFFFFF;
+    font-size: 0.95em;
+    padding: 15px 10px 10px;
+}
+
+div.mod-box1 a{
+    color: #FFFFFF;
+	text-decoration: underline;
+}
+
+div.mod-box2 {
+    background: none repeat scroll 0 0 #4B3F7B;
+    color: #FFFFFF;
+    font-size: 0.95em;
+    padding: 15px 10px 10px;
+}
+
+div.mod-box2 a{
+    color: #FFFFFF;
+	text-decoration: underline;
+}
+
+div.mod-box3 {
+    background: none repeat scroll 0 0 #D0BF6A;
+    color: #FFFFFF;
+    font-size: 0.95em;
+    padding: 15px 10px 10px;
+}
+
+div.mod-menufooter {
+    line-height: 15px;
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+div.mod-menufooter ul{
+line-height: 15px;
+}
+div.mod-menufooter li a {
+    padding: 0 13px 0 15px;
+}
+
+div.mod-menufooter li a {
+    color: #4070A3;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0 13px 0 15px;
+    text-decoration: none;
+}
+
+div.mod-box .badge { top: 10px; right: 10px; }
+
+div.mod-copyright {
+	margin: 0;
+}
+
+div.mod-line {
+    padding-bottom: 10px;
+    padding-top: 10px;
+	border: none;
+}

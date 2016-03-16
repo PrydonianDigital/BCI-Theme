@@ -1,0 +1,280 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+@import url(../warp/css/system.css);
+@import url(../warp/systems/joomla/css/system.css);
+@import url(system-all.css);
+
+
+/* Items (Addition)
+----------------------------------------------------------------------------------------------------*/
+ 
+#system .items .leading .item {
+	padding-bottom: 12px;
+	margin-bottom: 18px;
+	border-bottom: 1px solid #ddd;
+}
+
+
+/* Item List
+----------------------------------------------------------------------------------------------------*/
+
+#system .item-list { border-top: 1px solid #ddd; }
+
+
+/* Search
+----------------------------------------------------------------------------------------------------*/
+
+#system span.highlight { background-color: #ffffaa; }
+
+.breadcrumbs {
+    font-size: 11px;
+    line-height: 20px;
+    margin: 0 0 10px -5px;
+}
+
+#system .title {
+	margin-bottom: 20px;
+	font-size: 24px;
+	line-height: 26px;
+}
+
+#system .item > .meta { 
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 15px;
+	line-height: 19px;
+	font-style: italic;
+	color: #649ED9;
+}
+
+#system .item > .links a {
+	display: inline-block;
+	height: 24px;
+	margin-right: 5px;
+	padding: 0 15px 0 22px;
+	background: #6594C2 url(../images/readmore.png) 0 0 no-repeat;
+	line-height: 24px;
+	font-size: 12px;
+	color: #F2F1F0;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#system .item > .links a:hover {
+	background-color: #3C6A99;
+	background-position: 0 -34px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#system .item > .links a:after { content: ""; }
+ 
+#system .items .item {
+	margin-top: 29px;
+	padding-top: 30px;
+	border: none;
+	background: url(../images/article_separator.png) 0 0 repeat-x;
+}
+
+#system .items .item:first-child { background: none; }
+
+#system .items .item > .meta { margin-top: 20px; }
+
+/* Joomla 1.5/1.6 only */
+#system .item > .icon { margin-top: 7px; }
+
+#system .item-list { 
+	margin-top: 29px;
+	padding-top: 15px;
+	border: none;
+	background: url(../images/article_separator.png) 0 0 repeat-x;
+}
+
+#system .items.leading {
+	padding-bottom: 29px;
+	margin-bottom: 29px;
+	border: none;
+	background: url(../images/article_separator.png) 0 100% repeat-x;
+}
+
+/*
+ * searchbox
+ */
+
+#searchbox {
+	width: 173px;
+	height: 28px;
+	margin-top:17px;
+	padding: 0 0 0 5px;
+	background: url(../images/searchbox_bg.png) 0 0 no-repeat;
+}
+#searchbox:hover  { background-position: 0 0; }
+
+#searchbox input {
+	width: 115px;
+	height: 24px;
+	color: #666;
+	font-size: 12px;
+	line-height: 24px;
+	padding-top:1px;
+	text-shadow: 0 -1px 0 rgba(255,255,255,0.4);
+}
+
+#searchbox:hover input,
+#searchbox input:focus { color: #000; }
+
+#searchbox button { 
+	width: 26px;
+	height: 26px;
+}
+
+#searchbox button.magnifier { background: url(../images/searchbox_magnifier.png) 50% 50% no-repeat; }
+
+#searchbox button.reset { }
+#searchbox .loading button.reset { }
+
+#searchbox .results {
+	top: 65px;
+	right: 0px;
+	border-color: #FFFFFF;
+	background: #F8F8FA;
+	text-shadow: 0 1px 0 rgba(255,255,255,1);
+	-webkit-box-shadow: 0 0 7px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 0 7px rgba(0,0,0,0.3);
+	box-shadow: 0 0 7px rgba(0,0,0,0.3);
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#searchbox .results li.results-header,
+#searchbox .results li.more-results {
+	height: 40px;
+	line-height: 40px;
+	color: #72727F;
+	font-size: 16px;
+}
+
+#searchbox .results li.results-header {
+	border: none;
+	background: #E8E8EA;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+#searchbox .results li.result { 
+	border: none;
+	color: #969FAA;
+	background: url(../images/search_result_item.png) 0 0 repeat-x;
+}
+#searchbox .results li.result.selected { 
+	color: #8C8CA0;
+	background-color: #E8E8EA;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+#searchbox .results li.result h3 { color: #72727F; }
+#searchbox .results li.result.selected h3 {	
+	color: #68ACF8;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
+
+#searchbox .results li.more-results {
+	padding-left: 30px;
+	border-color: #ffffff;
+	font-size: 14px;
+	background: #E8E8EA url(../images/searchbox_more_results.png) 13px 0 no-repeat;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+#searchbox .results li.more-results:hover {
+	color: #68ACF8;
+	background-position: 13px -40px;
+}
+
+/*
+ * table zebra
+ */
+ 
+table.zebra th,
+table.zebra td {
+	padding: 9px;
+	border-color: #CDCDCF;
+	border-color: rgba(0,0,0,0.15);
+}
+
+table.zebra tbody tr.odd { background: #E8E8E9; background: rgba(0,0,0,0.03); }
+table.zebra tbody tr:nth-of-type(odd) { background: #E8E8E9; background: rgba(0,0,0,0.03); }
+
+table.zebra tbody tr.even { background: #DEDEE0; background: rgba(0,0,0,0.08); }
+table.zebra tbody tr:nth-of-type(even) { background: #DEDEE0; background: rgba(0,0,0,0.08); }
+
+/*
+ * list style line
+ */
+
+ul.line > li {
+	border-top-style: solid;
+	border-color: #CDCDCF;
+}
+
+/*
+ * pagination
+ */
+
+.pagination a,
+.pagination strong {
+	height: 25px;
+	border: none;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 25px;
+	background: url(../images/pagination_bg.png) 0 0 no-repeat;
+	-moz-border-radius: 13px;
+	border-radius: 13px;
+	overflow: hidden;
+}
+
+
+.pagination a {
+	color: #333;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.pagination a:hover {
+	color: #333;
+	background-position: 0 -25px;
+}
+
+.pagination strong { 
+	color: #28292A;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.pagination .first,
+.pagination .last { display: none; }
+
+.pagination a.previous,
+.pagination a.next {
+	width: 15px;
+	text-indent: 50px;
+}
+
+.pagination a.previous { background-position: 0 -50px; }
+.pagination a.previous:hover { background-position: 0 -75px; }
+
+.pagination a.next { background-position: 0 -100px; }
+.pagination a.next:hover { background-position: 0 -125px; }
+
+.breadcrumbs a, .breadcrumbs span {
+    background: url("../images/breadcrumbs_span.png") no-repeat scroll 100% 55% transparent;
+    color: #5A5C5E;
+    margin-right: 9px;
+    padding-right: 18px;
+}

@@ -1,0 +1,107 @@
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+
+@import url(../warp/css/layout.css);
+
+
+/* Spacing
+----------------------------------------------------------------------------------------------------*/
+
+.module,
+#header,
+#breadcrumbs,
+#content,
+#footer { margin: 15px; }
+
+#menu .module { margin: 10px 5px; }
+
+#footer .module { margin: 0; }
+
+#toolbar,
+#headerbar { margin-bottom: 15px; }
+
+
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+#totop-scroller {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	background: url(../images/totop_scroller.png) 50% 50% no-repeat;
+	text-decoration: none;
+}
+
+#page-header { 
+	background-color: #26136f;
+	background-image: -moz-linear-gradient(top,#2f188a,#1b0e53);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#2f188a),to(#1b0e53));
+	background-image: -webkit-linear-gradient(top,#2f188a,#1b0e53);
+	background-image: -o-linear-gradient(top,#2f188a,#1b0e53);
+	background-image: linear-gradient(to bottom,#2f188a,#1b0e53);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2f188a', endColorstr='#ff1b0e53', GradientType=0);
+	text-shadow: none;
+	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+	box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+	border-bottom: 1px solid #ffffff;
+	padding-bottom: 10px;
+}
+
+#page-header a:active {
+    color: #FFFFFF;
+}
+#page-header .page-header-1 { }
+
+#header-bottom {
+background-color: #c0b657;
+height: 10px;
+border-bottom: none;
+}
+
+#toolbar {
+    font-size: 11px;
+    height: 36px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 5px 0 0;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+#toolbar a {
+    color: #E2E2E7;
+}
+
+#toolbar a:hover {
+    text-decoration: underline;
+}
+
+#logo {
+    left: 0;
+    position: absolute;
+    top: 0px;
+	zoom: 1;
+}
+
+#menu-bg {
+    left: 0;
+    position: absolute;
+    top: 97px;
+}
+
+.menu-dropdown, .menu-dropdown .level1, .menu-dropdown .level1 > span {
+    float: left;
+}
+
+.menu-dropdown {
+    margin-bottom: 10px;
+}
+
+#footer {
+    position: relative;
+    text-align: left;
+}
