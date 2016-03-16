@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renderer>
+	<positions layout="full">
+		<position name="top">Top</position>
+		<position name="title">Title</position>
+		<position name="qualifications">Qualifications</position>
+		<position name="centre">Centre</position>
+		<position name="fellowships">Fellowships</position>
+		<position name="jobtitle">Job Title</position>
+		<position name="telephone">Telephone</position>
+		<position name="email">Email</position>
+		<position name="media">Media</position>
+		<position name="announcements">Announcements</position>
+		<position name="research">Research</position>
+		<position name="specification">Specification</position>
+		<position name="accordion">Accordion</position>
+		<position name="bottom">Bottom</position>
+		<position name="related">Related</position>
+	</positions>
+	<positions layout="teaser">
+		<position name="title">Title</position>
+		<position name="media">Media</position>
+		<position name="description">Description</position>
+		<position name="specification">Specification</position>
+		<position name="group_leader">Group Leader</position>
+		<position name="links">Links</position>
+	</positions>
+	<positions layout="related">
+		<position name="title">Title</position>
+		<position name="media">Media</position>
+		<position name="description">Description</position>
+		<position name="specification">Specification</position>
+		<position name="links">Links</position>
+	</positions>
+	<positions layout="feed">
+		<position name="description">Description</position>
+	</positions>
+	<positions layout="submission">
+		<position name="content">Content</position>
+		<position name="media">Media</position>
+		<position name="meta">Meta</position>
+	</positions>
+        <positions layout="edit">
+            <position name="content">Content</position>
+            <position name="media">Media</position>
+            <position name="meta">Meta</position>
+            <position name="administration">Administration</position>
+        </positions>
+</renderer>

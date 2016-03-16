@@ -8,13 +8,14 @@
 
 $html = array();
 
-if (($checksums = $this['path']->path('template:checksums')) && filesize($checksums)) {
-	$this['checksum']->verify($this['path']->path('template:'), $log);
+if (($checksums = $this['path']->path('theme:checksums')) && filesize($checksums)) {
+	$this['checksum']->verify($this['path']->path('theme:'), $log);
 
 	if ($count = count($log)) {
-	
-		$html[] = '<a href="#" class="verify-link">Some template files have been modified.</a>';
-		$html[] = '<ul class="verify">';
+
+		$html[] = '<p>Some template files have been modified.</p>';
+		$html[] = '<div class="uk-scrollable-box tm-width">';
+		$html[] = '<ul class="uk-list uk-text-small uk-text-info">';
 		foreach (array('modified', 'missing') as $type) {
 			if (isset($log[$type])) {
 				foreach ($log[$type] as $file) {
@@ -23,13 +24,15 @@ if (($checksums = $this['path']->path('template:checksums')) && filesize($checks
 			}
 		}
 		$html[] = '</ul>';
+		$html[] = '</div>';
+		$html[] = '<p>To prevent modified files when using FTP, make sure the transfer mode is set to binary.</p>';
 
 	} else {
-		$html[] = 'Verification successful, no file modifications detected.';
+		$html[] = '<p>Verification successful, no file modifications detected.</p>';
 	}
 
 } else {
-	$html[] = 'Checksum file is missing! Your template is maybe compromised.';
+	$html[] = '<p class="uk-text-danger">Checksum file is missing! Your template is maybe compromised.</p>';
 }
 
 echo implode("\n", $html);

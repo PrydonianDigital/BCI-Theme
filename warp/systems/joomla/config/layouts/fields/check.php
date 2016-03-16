@@ -10,7 +10,7 @@
 $this['check']->checkCommon();
 
 // check writable
-foreach (array($this['path']->path('cache:'), $this['path']->path('template:'),	$this['path']->path('admin:/templates/system')) as $directory) {
+foreach (array($this['path']->path('cache:'), $this['path']->path('theme:'), $this['path']->path('admin:/templates/system')) as $directory) {
 	$this['check']->checkWritable($directory);
 }
 
@@ -30,12 +30,19 @@ if ($critical || $notice) {
 		$label[] = count($notice).' potential';
 	}
 
-	echo '<a href="#" class="systemcheck-link '.($critical ? 'critical' : '').'">'.implode(' and ', $label).' issue(s) detected.</a>';
-	echo '<ul class="systemcheck">';
-	echo implode('', array_map(create_function('$message', 'return "<li class=\"critical\">{$message}</li>";'), $critical)); 
-	echo implode('', array_map(create_function('$message', 'return "<li>{$message}</li>";'), $notice)); 
+	echo '<p>'.implode(' and ', $label).' issue(s) detected.</p>';
+	echo '<ul class="uk-list uk-list-line tm-width">';
+
+	echo implode('', array_map(function($message) {
+		return "<li class=\"uk-text-danger\"><i class=\"uk-icon-bolt\"></i> {$message}</li>";
+	}, $critical));
+
+	echo implode('', array_map(function($message) {
+		return "<li class=\"uk-text-warning\"><i class=\"uk-icon-bolt\"></i> {$message}</li>";
+	}, $notice));
+
 	echo '</ul>';
 
 } else {
-	echo "Warp engine operational and ready for take off.";
+	echo "<p>Warp engine operational and ready for take off.<p>";
 }

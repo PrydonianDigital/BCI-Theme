@@ -1,137 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fields name="General">
-		<field name="profile_default" type="profile" default="" label="Default Profile" description="Select the profile which should be loaded by default." />
-		<field name="profile_dynamic" type="radio" default="1" label="Dynamic Profiles" description="Allow profiles to be loaded by URL.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="compression" type="list" default="0" label="Compression" description="Minify and combine CSS and JavaScript into a single file. Use gzip compression and Data URIs to reduce image file requests.">
-			<option value="0">None</option>
-			<option value="1">Combination + Minify</option>
-			<option value="2">Combination + Minify + Data URIs</option>
-			<option value="3">Combination + Minify + Data URIs + Gzip</option>
-		</field>
-		<field name="outdated_browser" type="radio" default="1" label="Upgrade Page" description="Redirect outdated browsers to the upgrade page.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="twitter" type="radio" default="0" label="Twitter Button" description="Display a Tweet button in your articles.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="plusone" type="radio" default="0" label="Google+ Button" description="Display a Google+ button in your articles.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="facebook" type="radio" default="0" label="Facebook Button" description="Display a facebook like button in your articles.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-	  	<field name="tracking_code" type="textarea" rows="8" cols="30" label="Tracking Code" description="Insert your Google Analytics tracking code." />
-		<field name="verify" type="verify" label="Verify Files" description="Detect and show all file modifications." />
-		<field name="check" type="check" label="System Check" description="Detects system issues." />
-	</fields>
-	<fields name="Profiles">
-		<field name="Style" type="separator" />
-		<field name="style" type="styles" default="" label="Style" description="Select the style variation." />
-		<field name="color1" type="list" default="default" label="Primary Color" description="Select the primary color.">
-			<option value="">Blue</option>
-			<option value="orange">Orange</option>
-			<option value="green">Green</option>
-			<option value="navy">Navy</option>
-			<option value="red">Red</option>
-			<option value="pink">Pink</option>
-			<option value="salmon">Salmon</option>
-			<option value="turquoise">Turquoise</option>
-			<option value="rose">Rose</option>
-		</field>
-		<field name="color2" type="list" default="default" label="Secondary Color" description="Select the secondary color.">
-			<option value="">Orange</option>
-			<option value="blue">Blue</option>
-			<option value="green">Green</option>
-			<option value="navy">Navy</option>
-			<option value="red">Red</option>
-			<option value="pink">Pink</option>
-			<option value="salmon">Salmon</option>
-			<option value="turquoise">Turquoise</option>
-			<option value="rose">Rose</option>
-		</field>
-		<field name="font1" type="list" default="default" label="Body Font" description="Select the main body typeface.">
-			<option value="arial">Arial</option>
-			<option value="lucida">Lucida</option>
-			<option value="georgia">Georgia</option>
-			<option value="timesnewroman">Times New Roman</option>
-			<option value="trebuchet">Trebuchet</option>
-			<option value="droidsans">Droid Sans</option>
-			<option value="opensans">Open Sans</option>
-			<option value="yanonekaffeesatz">Yanone Kaffeesatz</option>
-			<option value="mavenpro">Maven Pro</option>
-			<option value="kreon">Kreon</option>
-		</field>
-		<field name="font2" type="list" default="default" label="Header Font" description="Select the headings typeface.">
-			<option value="arial">Arial</option>
-			<option value="lucida">Lucida</option>
-			<option value="georgia">Georgia</option>
-			<option value="timesnewroman">Times New Roman</option>
-			<option value="trebuchet">Trebuchet</option>
-			<option value="droidsans">Droid Sans</option>
-			<option value="opensans">Open Sans</option>
-			<option value="yanonekaffeesatz">Yanone Kaffeesatz</option>
-			<option value="mavenpro">Maven Pro</option>
-			<option value="kreon">Kreon</option>
-		</field>
-		<field name="font3" type="list" default="default" label="Menu Font" description="Select the menu typeface.">
-			<option value="arial">Arial</option>
-			<option value="lucida">Lucida</option>
-			<option value="georgia">Georgia</option>
-			<option value="timesnewroman">Times New Roman</option>
-			<option value="trebuchet">Trebuchet</option>
-			<option value="droidsans">Droid Sans</option>
-			<option value="opensans">Open Sans</option>
-			<option value="yanonekaffeesatz">Yanone Kaffeesatz</option>
-			<option value="mavenpro">Maven Pro</option>
-			<option value="kreon">Kreon</option>
-		</field>
-		<field name="Content" type="separator" />
-		<field name="date" type="radio" default="1" label="Date" description="Show the date.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="totop_scroller" type="radio" default="1" label="To-Top Scroller" description="Show the to-top scroller.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="warp_branding" type="radio" default="1" label="Warp Branding" description="Show the Warp branding.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="system_output" type="radio" default="1" label="System Output" description="Show the system output.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="Layout" type="separator" />
-		<field name="responsive" type="radio" default="1" label="Responsive Layout" description="Enable responsive layout.">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</field>
-		<field name="template_width" type="text" size="10" default="980" label="Template Width" description="Set the template width in pixel." class="short" />
-		<field name="sidebar-a_width" type="text" size="10" default="25" label="Sidebar A Width" description="Set the Sidebar A width in percent." class="short" />
-		<field name="sidebar-b_width" type="text" size="10" default="25" label="Sidebar B Width" description="Set the Sidebar B width in percent." class="short" />
-		<field name="sidebar-a" type="list" default="right" label="Sidebar A Position" description="Align the sidebar to the left or right.">
-			<option value="right">Right</option>
-			<option value="left">Left</option>
-		</field>
-		<field name="sidebar-b" type="list" default="right" label="Sidebar B Position" description="Align the sidebar to the left or right.">
-			<option value="right">Right</option>
-			<option value="left">Left</option>
-		</field>
-		<field name="top-a" type="layout" default="equal" label="Top A Layout" description="Select a grid layout for this module position." />
-		<field name="top-b" type="layout" default="equal" label="Top B Layout" description="Select a grid layout for this module position." />
-		<field name="innertop" type="layout" default="equal" label="Inner Top Layout" description="Select a grid layout for this module position." />
-		<field name="innerbottom" type="layout" default="equal" label="Inner Bottom Layout" description="Select a grid layout for this module position." />
-		<field name="bottom-a" type="layout" default="equal" label="Bottom A Layout" description="Select a grid layout for this module position." />
-		<field name="bottom-b" type="layout" default="equal" label="Bottom B Layout" description="Select a grid layout for this module position." />
-		<field name="menu_width" type="text" size="10" default="250" label="Drop Down Column Width" description="Set the column width of the drop down menu in pixel." class="short" />
-	</fields>
+    <fields name="Settings" icon="uk-icon-cogs">
+        <field type="section" name="Styles" description="Use the customizer to create your own style. You can pick colors, modify sizes and much more with a real time theme preview. Choose the style to be loaded in the layout options." />
+        <field type="customizer" />
+        <field type="section" name="Development" description="Always uncheck following options for your production website." />
+        <field type="checkbox" name="dev_mode" value="1" label="Compile LESS in the browser on every page load." />
+        <field type="checkbox" name="dynamic_style" value="1" label="Allow styles to be loaded by URL. This will override the style originally loaded by the theme." />
+        <field type="compile" />
+        <field type="section" name="Compression" description="Minify CSS and JavaScript into a single file. Use gzip compression and Data URIs to reduce image file requests." />
+        <field type="select" name="compression" default="0">
+            <option value="0">None</option>
+            <option value="1">Minify</option>
+            <option value="2">Minify + Data URIs</option>
+            <option value="3">Minify + Data URIs + Gzip</option>
+        </field>
+        <field type="section" name="Responsive" description="The viewport meta tag controls the layout on mobile browsers. If it's not set, the default width on mobile is 1220px and the site will look the same like on desktops." />
+        <field type="checkbox" name="responsive" value="0" label="Disable the viewport meta tag." />
+        <field type="section" name="Bootstrap" description="If you just use the Joomla blog and articles you don't need to load Bootstrap." />
+        <field type="checkbox" name="bootstrap" value="0" label="Disable Bootstrap." />
+        <field type="section" name="Content" description="Display specific content elements in the theme." />
+        <field type="checkbox" name="totop_scroller" value="0" label="Hide To-top scroller." />
+        <field type="checkbox" name="warp_branding" value="0" label="Hide Warp branding." />
+        <field type="section" name="Social Buttons" description="Display Tweet, Google+ or Like buttons in your posts to share them in social media." />
+        <field type="checkbox" name="twitter" value="1" label="Show Tweet button." />
+        <field type="checkbox" name="plusone" value="1" label="Show Google+ button." />
+        <field type="checkbox" name="facebook" value="1" label="Show Facebook Like button." />
+        <field type="section" name="Modules" description="Choose the default module style for each position." />
+        <field type="table" name="panel_default">
+            <rows label="Position">
+                <row>top-a</row>
+                <row>top-b</row>
+                <row>bottom-a</row>
+                <row>bottom-b</row>
+                <row>main-top</row>
+                <row>main-bottom</row>
+                <row>sidebar-a</row>
+                <row>sidebar-b</row>
+            </rows>
+            <field type="select" name="panel" label="Style">
+                <option value="uk-panel">Blank</option>
+                <option value="uk-panel uk-panel-box">Box</option>
+                <option value="uk-panel uk-panel-box uk-panel-box-primary">Box Primary</option>
+                <option value="uk-panel uk-panel-box uk-panel-box-secondary">Box Secondary</option>
+                <option value="uk-panel uk-panel-header">Header</option>
+                <option value="uk-panel uk-panel-space">Space</option>
+            </field>
+        </field>
+        <field type="section" name="Additional Scripts" description="Insert your Google Analytics tracking code or any other additional scripts here. They will be added before the closing body tag in the theme." />
+        <field type="textarea" name="tracking_code" class="uk-form-width-large" rows="8" />
+    </fields>
+    <fields name="Layouts" icon="uk-icon-columns">
+        <field type="layouts" name="layouts">
+            <field type="section" name="Style" description="Select which style the layout should load." />
+            <field type="style" name="style" />
+            <field type="section" name="Content" description="Display specific content elements in the theme." />
+            <field type="checkbox" name="system_output" value="0" label="Hide system output." />
+            <field type="section" name="Sidebars" description="Choose the sidebar widths and align the sidebar to the left or right." />
+            <field type="table" name="sidebars">
+                <rows label="Position">
+                    <row>sidebar-a</row>
+                    <row>sidebar-b</row>
+                </rows>
+                <field type="select" name="width" label="Width">
+                    <option value="12" data-gcf="6">20%</option>
+                    <option value="15" data-gcf="15">25%</option>
+                    <option value="18" data-gcf="6">30%</option>
+                    <option value="20" data-gcf="20">33%</option>
+                    <option value="24" data-gcf="6">40%</option>
+                    <option value="30" data-gcf="3">50%</option>
+                </field>
+                <field type="select" name="alignment" label="Alignment">
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                </field>
+            </field>
+            <field type="section" name="Grid" description="Choose the grid layout for each position. Further, you can enable horizontal dividers and prevent the responsive grid behavior. Note: Both options are not taken into account for the stacked layout." />
+            <field type="table" name="grid">
+                <rows label="Position">
+                    <row>top-a</row>
+                    <row>top-b</row>
+                    <row>bottom-a</row>
+                    <row>bottom-b</row>
+                    <row>main-top</row>
+                    <row>main-bottom</row>
+                </rows>
+                <field type="select" name="layout" label="Layout">
+                    <option value="parallel">Parallel</option>
+                    <option value="stacked">Stacked</option>
+                    <option value="doubled">First doubled</option>
+                    <option value="doubled-last">Last doubled</option>
+                </field>
+                <field type="select" name="responsive" label="Responsive" default="medium">
+                    <option value="">Disabled</option>
+                    <option value="medium">Stack on phones</option>
+                    <option value="large">Stack on ≤ tablets</option>
+                </field>
+                <field type="checkbox" name="divider" value="1" column="Divider" />
+            </field>
+        </field>
+    </fields>
+    <fields name="Modules" icon="uk-icon-th">
+        <field type="widgets" name="widgets">
+            <field type="text" name="class" label="Class" class="uk-form-width-small" tooltip="Add custom classes." />
+            <field type="select" name="panel" label="Style" tooltip="Choose module styles. Set the default module style in the settings.">
+                <option value="">Default</option>
+                <option value="uk-panel uk-panel-box">Box</option>
+                <option value="uk-panel uk-panel-box uk-panel-box-primary">Box Primary</option>
+                <option value="uk-panel uk-panel-box uk-panel-box-secondary">Box Secondary</option>
+                <option value="uk-panel uk-panel-header">Header</option>
+                <option value="uk-panel uk-panel-space">Space</option>
+                <option value="uk-panel">Blank</option>
+            </field>
+            <field type="checkbox" name="center" value="0" label="Center" />
+            <field type="select" name="title_size" label="Title" tooltip="Set the size of the title.">
+                <option value="uk-panel-title">Default</option>
+                <option value="uk-h1 uk-margin-top-remove">H1</option>
+                <option value="uk-h2 uk-margin-top-remove">H2</option>
+                <option value="uk-h3 uk-margin-top-remove">H3</option>
+                <option value="uk-h4 uk-margin-top-remove">H4</option>
+                <option value="uk-heading-large uk-margin-top-remove">Extra Large</option>
+            </field>
+            <field type="text" name="icon" label="Icon" class="uk-form-width-small" tooltip="Add UIkit icon classes or image urls." />
+            <field type="badge" name="badge" label="Badge" tooltip="Set the badge colors and text.">
+                <option value="uk-panel-badge uk-badge">Default</option>
+                <option value="uk-panel-badge uk-badge uk-badge-success">Success</option>
+                <option value="uk-panel-badge uk-badge uk-badge-warning">Warning</option>
+                <option value="uk-panel-badge uk-badge uk-badge-danger">Danger</option>
+            </field>
+            <field type="display" name="display" label="Display" tooltip="Display or hide modules on certain devices." />
+        </field>
+    </fields>
+    <fields name="Menus" icon="uk-icon-bars">
+        <field type="menus">
+            <field type="select" name="columns" default="1" label="Columns" max-depth="1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </field>
+            <field type="text" name="columnwidth" label="Column Width" class="uk-form-width-small" placeholder="px" max-depth="1" />
+            <field type="text" name="icon" label="Icon" class="uk-form-width-small" tooltip="Add UIkit icon classes or image urls." />
+            <field type="text" name="subtitle" label="Subtitle" class="uk-form-width-small" tooltip="Add subtitles tu menu items." />
+        </field>
+    </fields>
+    <fields name="Information" icon="uk-icon-info-circle">
+        <field type="section" name="Versions" description="This theme is based on the Warp framework. Always keep the theme and the Warp framework up-to-date." />
+        <field type="info" />
+        <field type="section" name="System Check" />
+        <field type="check" />
+        <field type="section" name="File Verification" />
+        <field type="verify" />
+    </fields>
 </config>

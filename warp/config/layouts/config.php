@@ -7,36 +7,58 @@
 */
 
 // get config
-$config = $this['system']->config;
+$config = $this['config'];
 
 // get config xml
-$xml     = $this['dom']->create($this['path']->path('template:config.xml'), 'xml');
-$warpxml = $this['dom']->create($this['path']->path('warp:warp.xml'), 'xml');
+$xml = $this['dom']->create($this['path']->path('theme:config.xml'), 'xml');
 
-echo '<ul id="config" data-warpversion="'.($warpxml->first('version')->text()).'">';
+// render nav & main
+$nav  = array();
+$main = array();
 
-// render fields
 foreach ($xml->find('fields') as $fields) {
-	
+
 	// init vars
     $name    = $fields->attr('name');
-	$content = '';
+    $icon    = $fields->attr('icon');
 
-	if ($name == 'Profiles') {
+    $content = $this->render('config:layouts/fields', array('config' => $config, 'fields' => $fields, 'values' => $config, 'prefix' => '', 'attr' => array()));
 
-		// get profile data
-		$profiles = $config->get('profile_data', array('default' => array()));
-
-		// render profiles
-		foreach ($profiles as $profile => $values) {
-			$content .= $this->render('config:layouts/fields', array('config' => $config, 'fields' => $fields, 'values' => $this['data']->create($values), 'prefix' => "profile_data[$profile]", 'attr' => array('data-profile' => $profile)));
-		}
-
-	} else {
-		$content = $this->render('config:layouts/fields', array('config' => $config, 'fields' => $fields, 'values' => $config, 'prefix' => 'config', 'attr' => array()));
-	}
-
-	printf('<li class="%s" data-name="%s">%s</li>', $name, $name, $content);
+	$nav[]  = sprintf('<li><a href=""><i class="%s"></i> %s</a></li>', $icon, $name);
+	$main[] = sprintf('<div class="uk-form tm-form"><h1 class="uk-article-title">%s</h1>%s</div>', $name, $content);
 }
 
-echo '</ul>';
+?>
+
+<div id="config" class="warp">
+
+	<?php if ($messages = $this->get('messages')) : ?>
+		<div class="uk-alert uk-alert-large uk-alert-warning" data-uk-alert>
+			<h2>Notice</h2>
+			<?php echo implode("<br>", $messages); ?>
+		</div>
+	<?php endif; ?>
+
+	<div class="tm-content">
+
+		<div class="tm-sidebar">
+
+			<div class="tm-sidebar-logo uk-panel">
+				<img width="140" height="46" src="<?php echo $this['path']->url('config:images/logo.png'); ?>" alt="">
+			</div>
+
+			<div class="uk-panel">
+				<ul class="uk-nav uk-nav-side">
+					<?php echo implode("\n", $nav); ?>
+				</ul>
+			</div>
+
+		</div>
+
+		<main class="tm-main">
+			<?php echo implode("\n", $main); ?>
+		</main>
+
+	</div>
+
+</div>

@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 
 <?php if (!empty($list)) :?>
-<ul class="line line-icon">
+<ul class="uk-list uk-list-line">
 <?php foreach ($list as $item) : ?>
 	<li><a href="<?php echo $item->link; ?>"><?php echo $item->text; ?></a></li>
 <?php endforeach; ?>

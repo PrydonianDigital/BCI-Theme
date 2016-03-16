@@ -1,0 +1,41 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * layout
+ */
+
+#yoo-zoo.categories .row {
+	padding: 0 15px;
+}
+#yoo-zoo.categories .first-row {
+	border-top: none;
+}
+#yoo-zoo .categories .width50 {
+	float: left;
+	border-top: 1px solid #777;
+	width: 46%;
+	margin: 0 2%;
+}
+#yoo-zoo .category h2.title {
+	font-size: 18px;
+	margin: 20px 0 !important;
+}
+#yoo-zoo.categories p.sub-categories {
+	font-size: 16px;
+}
+#yoo-zoo.product-default-frontpage .categories {
+	background: #2B167B;
+	color: #fff;
+	margin: 20px auto;
+}
+#yoo-zoo.product-default-frontpage .categories a, #yoo-zoo.product-default-frontpage .categories h2.title a {
+	color: #D0BF6A;
+	text-decoration: none;
+}
+#yoo-zoo.product-default-frontpage .categories a:hover, #yoo-zoo.product-default-frontpage .categories h2.title a:hover {
+	color: #D0BF6A;
+	text-decoration: underline;
+}
+#yoo-zoo:not(.product-default-frontpage) .categories {
+	display: none;
+}

@@ -1,40 +1,88 @@
-<meta charset="<?php echo $this['system']->document->getCharset(); ?>" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<?php if($this['config']->get('responsive', false)): ?>
+<meta charset="<?php echo $this['system']->document->getCharset(); ?>">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php if($this['config']->get('responsive', true)): ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php endif; ?>
+<?php if (isset($error)): ?>
+<title><?php echo $error; ?> - <?php echo $title; ?></title>
+<?php else: ?>
 <jdoc:include type="head" />
-<link rel="apple-touch-icon-precomposed" href="<?php echo $this['path']->url('template:apple_touch_icon.png'); ?>" />
+<?php endif; ?>
+<link rel="apple-touch-icon-precomposed" href="<?php echo $this['path']->url('theme:apple_touch_icon.png'); ?>">
 <?php
 
-// get html head data
-$head = $this['system']->document->getHeadData();
-
 // remove deprecated meta-data (html5)
-unset($head['metaTags']['http-equiv']);
-unset($head['metaTags']['standard']['title']);
-unset($head['metaTags']['standard']['rights']);
-unset($head['metaTags']['standard']['language']);
-
-$this['system']->document->setHeadData($head);
+if ($this['system']->document->getType() == 'html') {
+	$head = $this['system']->document->getHeadData();
+	unset($head['metaTags']['http-equiv']);
+	unset($head['metaTags']['generator']);
+	$this['system']->document->setHeadData($head);
+}
 
 // load jQuery
 JHtml::_('jquery.framework');
-
-// load bootstrap styles
-if ($bootstrap = $this['path']->url('css:bootstrap.css')) {
-	$this['system']->document->addStyleSheet($bootstrap);
-}
 
 // get styles and scripts
 $styles  = $this['asset']->get('css');
 $scripts = $this['asset']->get('js');
 
+// load bootstrap styles
+if ($this['config']->get('bootstrap', true) && $file = $this['path']->url('css:bootstrap.css')) {
+	JHtml::_('bootstrap.framework');
+	$styles->prepend($bootstrap = $this['asset']->createFile($file));
+}
+
+// customizer mode
+if ($this['config']['customizer']) {
+	foreach ($this['config']['less']['files'] as $file => $less) {
+		foreach ($styles as $style) {
+			if ($url = $style->getUrl() and substr($url, -strlen($file)) == $file) {
+				$style['data-file'] = $file;
+				break;
+			}
+		}
+	}
+}
+// developer mode
+else if ($this['config']['dev_mode']) {
+
+    // less files & filter
+    $files  = array();
+    $filter = $this['assetfilter']->create(array('CssImportResolver', 'CssRewriteUrl'));
+
+	foreach ($styles as $style) {
+
+        if (!$style instanceof Warp\Asset\FileAsset) continue;
+
+		$file = sprintf('less:%s.less', basename($style->getPath(), '.css'));
+
+		if ($this['path']->path($file)) {
+
+			$source = $this['asset']->createFile($file)->getContent($filter).PHP_EOL;
+
+			if ($this['config']['style'] == 'default') {
+				$source .= $this['asset']->createFile('less:style.less')->getContent();
+			} else {
+				$source .= $this['asset']->createFile(sprintf('theme:styles/%s/style.less', $this['config']['style']))->getContent();
+			}
+
+            $files[] = array('target' => basename($style->getPath()), 'source' => $this['asset']->createString($source, array_merge($style->getOptions(), array('type' => 'text/less')))->getContent());
+
+            $styles->replace($style, $this['asset']->createString('', array_merge($style->getOptions(), array('data-file' => basename($style->getPath())))));
+        }
+    }
+
+    $this['asset']->addString('js', 'var less = { env: "development" }, files = '.json_encode($files).';');
+    $this['asset']->addFile('js', 'warp:vendor/jquery/jquery-less.js');
+    $this['asset']->addFile('js', 'warp:vendor/jquery/jquery-rtl.js');
+    $this['asset']->addFile('js', 'warp:vendor/less/less-1.5.1.min.js');
+    $this['asset']->addFile('js', 'warp:js/developer.js');
+}
 // compress styles and scripts
-if ($compression = $this['config']->get('compression')) {
+else if ($compression = $this['config']['compression'] or $this['config']['direction'] == 'rtl') {
 
 	$options = array();
-	$filters = array('CSSImportResolver', 'CSSRewriteURL', 'CSSCompressor');
+	$filters = array('CssImportResolver', 'CssRewriteUrl');
 
 	// set options
 	if ($compression == 3) {
@@ -42,23 +90,39 @@ if ($compression = $this['config']->get('compression')) {
 	}
 
 	// set filter
+	if ($this['config']['direction'] == 'rtl') {
+		$filters[] = 'CssRtl';
+	}
+
 	if ($compression >= 2 && ($this['useragent']->browser() != 'msie' || version_compare($this['useragent']->version(), '8.0', '>='))) {
-		$filters[] = 'CSSImageBase64';
+		$filters[] = 'CssImageBase64';
 	}
 
 	// cache styles and check for remote styles
 	if ($styles) {
-		$styles = array($this['asset']->cache('template.css', $styles, $filters, $options));
+
+		if (isset($bootstrap)) {
+			$styles->remove($bootstrap);
+		}
+
+		$styles = array($this['asset']->cache('theme.css', $styles, array_merge($filters, array('CssCompressor')), $options));
+
 		foreach ($styles[0] as $style) {
 			if ($style->getType() == 'File' && !$style->getPath()) {
 				$styles[] = $style;
 			}
 		}
+
+		if (isset($bootstrap)) {
+			array_unshift($styles, $this['asset']->cache('bootstrap.css', $bootstrap, array_merge($filters, array('CssCompressor')), $options));
+		}
 	}
 
 	// cache scripts and check for remote scripts
 	if ($scripts) {
-		$scripts = array($this['asset']->cache('template.js', $scripts, array('JSCompressor'), $options));
+
+		$scripts = array($this['asset']->cache('theme.js', $scripts, array('JsCompressor'), $options));
+
 		foreach ($scripts[0] as $script) {
 			if ($script->getType() == 'File' && !$script->getPath()) {
 				$scripts[] = $script;
@@ -69,13 +133,13 @@ if ($compression = $this['config']->get('compression')) {
 	// compress joomla styles and scripts
 	$head = $this['system']->document->getHeadData();
 	$data = array('styleSheets' => array(), 'scripts' => array());
-	
+
 	foreach ($head['styleSheets'] as $style => $meta) {
 
 		if (preg_match('/\.css$/i', $style)) {
 			$asset = $this['asset']->createFile($style);
 			if ($asset->getPath()) {
-				$style = $this['asset']->cache(basename($style), $asset, array('CSSImportResolver', 'CSSRewriteURL', 'CSSCompressor'), $options)->getUrl();
+				$style = $this['asset']->cache(basename($style), $asset, array('CssImportResolver', 'CssRewriteUrl', 'CssCompressor'), $options)->getUrl();
 			}
 		}
 
@@ -87,13 +151,13 @@ if ($compression = $this['config']->get('compression')) {
 		if (preg_match('/\.js$/i', $script)) {
 			$asset = $this['asset']->createFile($script);
 			if ($asset->getPath()) {
-				$script = $this['asset']->cache(basename($script), $asset, array('JSCompressor'), $options)->getUrl();
+				$script = $this['asset']->cache(basename($script), $asset, array('JsCompressor'), $options)->getUrl();
 			}
 		}
-	
+
 		$data['scripts'][$script] = $meta;
 	}
-	
+
 	$this['system']->document->setHeadData(array_merge($head, $data));
 }
 
@@ -101,9 +165,9 @@ if ($compression = $this['config']->get('compression')) {
 if ($styles) {
 	foreach ($styles as $style) {
 		if ($url = $style->getUrl()) {
-			printf("<link rel=\"stylesheet\" href=\"%s\" />\n", $url);
+			printf("<link %srel=\"stylesheet\" href=\"%s\">\n", isset($style['data-file']) ? 'data-file="'.$style['data-file'].'" ' : '', $url);
 		} else {
-			printf("<style>%s</style>\n", $style->getContent());
+			printf("<style %s>%s</style>\n", $this['field']->attributes($style->getOptions(), array('base_path', 'base_url')), $style->getContent());
 		}
 	}
 }

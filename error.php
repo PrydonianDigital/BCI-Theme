@@ -1,6 +1,6 @@
 <?php
 /**
-* @package   yoo_master
+* @package   yoo_master2
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
@@ -9,11 +9,8 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-// include config	
-include_once(dirname(__FILE__).'/config.php');
-
 // get warp
-$warp = Warp::getInstance();
+$warp = require(__DIR__.'/warp.php');
 
 // set messages
 $title   = $this->title;
@@ -24,7 +21,10 @@ $message = $this->error->getMessage();
 if ($error == '404') {
 	$title   = JText::_('TPL_WARP_404_PAGE_TITLE');
 	$message = JText::sprintf('TPL_WARP_404_PAGE_MESSAGE', JURI::root(false), $warp['config']->get('site_name'));
+	header('Location: /404');
+	exit;
 }
 
 // render error layout
-echo $warp['template']->render('error', compact('title', 'error', 'message'));
+//echo $warp['template']->render('error', compact('title', 'error', 'message'));
+

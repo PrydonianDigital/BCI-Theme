@@ -10,17 +10,15 @@
 defined('_JEXEC') or die('Restricted access');
 
 // get template data/path
-$data   = JFactory::getApplication()->input->get('jform', array(), 'array');
-$templ  = isset($data['template']) ? $data['template'] : '';
-$config = JPATH_ROOT."/templates/{$templ}/config.php";
+$app   = JFactory::getApplication();
+$templ = $app->input->get('template');
+$task  = $app->input->get('callback');
+$warp  = JPATH_ROOT."/templates/{$templ}/warp.php";
 
-if ($templ && file_exists($config)) {
+if ($templ && $task && file_exists($warp)) {
 
-	// load template config
-	require_once($config);
-
-	// trigger save config
-	$warp = Warp::getInstance();
-	$warp['system']->saveConfig();	
+	// trigger callback
+	$warp = require($warp);
+	$warp['system']->ajaxCallback($task);
 
 }

@@ -6,54 +6,79 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
-// prepare filters
-$filters = $this['assetfilter']->create(array('CSSImportResolver', 'CSSRewriteURL', 'CSSCompressor'));
+defined('_JEXEC') or die;
+$app = JFactory::getApplication();
+
+// add css
+$this['asset']->addFile('css', 'css:theme.css');
+
+require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
+$twofactormethods = UsersHelper::getTwoFactorMethods();
 
 ?>
+
 <!DOCTYPE HTML>
-<html lang="<?php echo $this['config']->get('language'); ?>" dir="<?php echo $this['config']->get('direction'); ?>">
+<html lang="<?php echo $this['config']->get('language'); ?>" dir="<?php echo $this['config']->get('direction'); ?>" class="uk-height-1-1">
 
 <head>
-	<title><?php echo $error; ?> - <?php echo $title; ?></title>
-	<link rel="stylesheet" href="<?php echo $this['path']->url('css:base.css'); ?>" />
-	<link rel="stylesheet" href="<?php echo $this['path']->url('css:error.css'); ?>" />
-	<!--[if IE 6]><style><?php echo $this['asset']->createFile('css:error-ie6.css')->getContent($filters); ?></style><![endif]-->
+<?php echo $this->render('head', compact('error', 'title')); ?>
 </head>
 
-<body id="page" class="page">
+<body class="uk-height-1-1 uk-vertical-align uk-text-center">
 
-	<div class="center error-<?php echo strtolower($error); ?>">
+	<div class="tm-offline uk-panel uk-panel-box uk-vertical-align-middle uk-container-center">
 
-		<h1 class="error">
-			<span><?php echo $error; ?></span>
-		</h1>
-		<h2 class="title"><?php echo $title; ?></h2>
-		<p class="message"><?php echo $message; ?></p>
+		<jdoc:include type="message" />
 
-		<form class="short style" action="<?php echo JRoute::_('index.php', true); ?>" method="post">
-			<div class="username">
-				<label for="username"><?php echo JText::_('JGLOBAL_USERNAME') ?></label>
-				<input name="username" id="username" type="text" class="inputbox" alt="<?php echo JText::_('JGLOBAL_USERNAME') ?>" size="18" />
+		<h1><?php echo $error; ?></h1>
+
+		<p class="uk-text-large uk-text-muted"><?php echo $title; ?></p>
+
+		<?php if ($app->getCfg('display_offline_message', 1) == 1 && str_replace(' ', '', $app->getCfg('offline_message')) != '') : ?>
+
+			<p><?php echo $app->getCfg('offline_message'); ?></p>
+
+		<?php elseif ($app->getCfg('display_offline_message', 1) == 2 && str_replace(' ', '', $message) != '') : ?>
+
+			<p><?php echo $message; ?></p>
+
+		<?php endif; ?>
+
+		<form class="uk-form" action="<?php echo JRoute::_('index.php', true); ?>" method="post">
+
+			<div class="uk-form-row">
+				<input class="uk-width-1-1" type="text" name="username" placeholder="<?php echo JText::_('JGLOBAL_USERNAME') ?>">
 			</div>
-			<div class="password">
-				<label for="passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
-				<input type="password" name="password" class="inputbox" size="18" alt="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" id="passwd" />
+
+			<div class="uk-form-row">
+				<input class="uk-width-1-1" type="password" name="password" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>">
 			</div>
-			<div class="remember">
-				<label for="remember"><?php echo JText::_('JGLOBAL_REMEMBER_ME') ?></label>
-				<input type="checkbox" name="remember" class="inputbox" value="yes" alt="<?php echo JText::_('JGLOBAL_REMEMBER_ME') ?>" id="remember" />
+
+			<?php if (count($twofactormethods) > 1) : ?>
+			<div class="uk-form-row">
+				<input class="uk-width-1-1" type="text" name="secretkey" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_SECRETKEY') ?>" />
 			</div>
-			
-			<div class="button">
-				<input type="submit" name="Submit" class="button" value="<?php echo JText::_('JLOGIN') ?>" />
+			<?php endif; ?>
+
+			<div class="uk-form-row">
+				<button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="Submit"><?php echo JText::_('JLOGIN') ?></button>
 			</div>
-			<input type="hidden" name="option" value="com_users" />
-			<input type="hidden" name="task" value="user.login" />
-			<input type="hidden" name="return" value="<?php echo base64_encode(JURI::base()) ?>" />
+
+			<div class="uk-form-row">
+				<div class="uk-form-controls">
+					<input type="checkbox" name="remember" value="yes" placeholder="<?php echo JText::_('JGLOBAL_REMEMBER_ME') ?>">
+					<label for="remember"><?php echo JText::_('JGLOBAL_REMEMBER_ME') ?></label>
+				</div>
+			</div>
+
+			<input type="hidden" name="option" value="com_users">
+			<input type="hidden" name="task" value="user.login">
+			<input type="hidden" name="return" value="<?php echo base64_encode(JURI::base()) ?>">
 			<?php echo JHtml::_('form.token'); ?>
+
 		</form>
 
 	</div>
-	
+
 </body>
 </html>

@@ -1,0 +1,129 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * item
+ */
+
+#yoo-zoo.items .row {
+	padding: 0;
+}
+#yoo-zoo.items .first-row {
+	border-top: none;
+}
+#yoo-zoo .items .width50 {
+	width: 50%;
+	float: left;
+	border-top: 1px solid #e0e0e0;
+}
+#yoo-zoo .items .first-row .width50 {
+	border: none;
+}
+#yoo-zoo .items .width50 .teaser-item {
+	padding: 10px;
+	color: #111;
+}
+#yoo-zoo .items .width50 .teaser-item .pos-title {
+	margin-top: 0;
+}
+#yoo-zoo .items .width50 .teaser-item .pos-links {
+	clear: both;
+}
+div.pos-media.media-left {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+div.pos-media.media-right {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+ul.pos-specification {
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+}
+#yoo-zoo.product-default .item .element-image {
+	width: 150px;
+}
+#yoo-zoo.product-default .item .element-image img {
+	width: 100%;
+	height: auto;
+	padding: 5px 5px 0 5px;
+	background: #e0e0e0;
+}
+div.pos-announcements {
+	max-width: 150px;
+	padding: 5px;
+	background: #2B167B;
+	color: #fff;
+	border: 5px solid #e0e0e0;
+	border-top: none;
+}
+div.pos-announcements a {
+	color: #fff !important;
+	text-decoration: none !important;
+}
+div.pos-announcements a:hover {
+	color: #fff !important;
+	text-decoration: underline !important;
+}
+.pos-qualifications, .pos-centre, .pos-fellowships, .pos-jobtitle, .pos-email {
+	font-weight: 700;
+	margin-bottom: 5px !important;
+}
+.pos-centre span {
+	font-weight: 300;
+}
+.pos-qualifications {
+	font-style: italic;
+	color: #2B167B;
+}
+.pos-bottom .element h3 {
+	margin: 0 !important;
+	padding: 10px;
+	background: #e0e0e0;
+	color: #2B167B;
+	cursor: pointer;
+}
+.accordion-item {
+	clear: both;
+	border: 1px solid #e0e0e0;
+}
+.accordion-item .element div {
+	display: none;
+	padding: 10px;
+}
+.accordion-item .element:first-child div {
+	display: block;
+}
+.accordion-item .element h3 {
+	background: #2B167B !important;
+	color: #fff !important;
+	margin: 0 !important;
+	padding: 10px !important;
+	cursor: pointer;
+	border-bottom: 1px solid #e0e0e0;
+}
+.accordion-item .element h3.open {
+	background: #D0BF6A !important;
+	color: #2B167B !important;
+	margin: 0 !important;
+	padding: 10px !important;
+	cursor: pointer;
+}
+.accordion-item .element:last-child h3 {
+	border: none !important;
+}
+#yoo-zoo .items .width50 .teaser-item .phd-research-students h2,
+#yoo-zoo .items .width50 .teaser-item .phd-research-students p {
+	font-size: 90% !important;
+}
+.pos-group-leader {
+	clear: both;
+	font-weight: 700;
+}
+.pos-group-leader a {
+	font-weight: 300;
+}
+.product-default-centre-for-cancer-and-innflamation .centre-lead {
+
+}

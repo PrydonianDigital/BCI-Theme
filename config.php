@@ -1,21 +1,28 @@
 <?php
 /**
-* @package   yoo_master
+* @package   yoo_master2
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
-require_once(dirname(__FILE__)."/warp/warp.php");
-
-$warp = Warp::getInstance();
-
-// add paths
-$warp['path']->register(dirname(__FILE__).'/warp/systems/joomla/helpers','helpers');
-$warp['path']->register(dirname(__FILE__).'/warp/systems/joomla/layouts','layouts');
-$warp['path']->register(dirname(__FILE__).'/layouts','layouts');
-$warp['path']->register(dirname(__FILE__).'/js', 'js');
-$warp['path']->register(dirname(__FILE__).'/css', 'css');
-
-// init system
-$warp['system']->init();
+return array(
+    'path' => array(
+        'theme'   => array(__DIR__),
+        'js'      => array(__DIR__.'/js'),
+        'css'     => array(__DIR__.'/css'),
+        'less'    => array(__DIR__.'/less'),
+        'layouts' => array(__DIR__.'/layouts')
+    ),
+    'less' => array(
+        'vars' => array(
+            'less:theme.less'
+        ),
+        'files' => array(
+            '/css/bci.css'     => 'less:bci.less',
+            '/css/bootstrap.css' => 'less:bootstrap.less'
+        )
+    ),
+    'cookie' => $cookie = md5(__DIR__),
+    'customizer' => isset($_COOKIE[$cookie])
+);

@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 ?>
-<div class="breadcrumbs"><?php
+<ul class="uk-breadcrumb"><?php
 
 	if (!$params->get('showLast', 1)) array_pop($list);
 
@@ -28,14 +28,14 @@ defined('_JEXEC') or die;
 		// mark-up last item as strong
 		if ($i < $count-1) {
 			if (!empty($list[$i]->link)) {
-				echo '<a href="'.$list[$i]->link.'">'.$name.'</a>';
+				echo '<li><a href="'.$list[$i]->link.'">'.$name.'</a></li>';
 			} else {
-				echo '<span>'.$name.'</span>';
+				echo '<li><span>'.$name.'</span></li>';
 			}
 		} else {
-			echo '<strong>'.$name.'</strong>';
+			echo '<li class="uk-active"><span>'.$name.'</span></li>';
 		}
 
 	}
 
-?></div>
+?></ul>

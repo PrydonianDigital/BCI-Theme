@@ -28,5 +28,5 @@ defined('_JEXEC') or die;
 <?php echo $item->introtext; ?>
 
 <?php if (isset($item->link) && $item->readmore && $params->get('readmore')) :
-	echo '<a class="button-default" href="'.$item->link.'">'.$item->linkText.'</a>';
+	echo '<a href="'.$item->link.'">'.$item->linkText.'</a>';
 endif;
