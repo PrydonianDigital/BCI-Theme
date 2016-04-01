@@ -15,7 +15,7 @@ include($this['path']->path('layouts:theme.config.php'));
 <head>
 <?php echo $this['template']->render('head'); ?>
 </head>
-
+<?php JHTML::_('behavior.modal'); ?>
 <body class="<?php echo $this['config']->get('body_classes'); ?>">
 
 	<?php if ($this['widgets']->count('logo + headerbar')) : ?>
@@ -50,7 +50,7 @@ include($this['path']->path('layouts:theme.config.php'));
 				<?php echo $this['widgets']->render('menu'); ?>
 				<?php endif; ?>
 				<?php if ($this['widgets']->count('search')) : ?>
-				<div class="uk-navbar-content"><?php echo $this['widgets']->render('search'); ?></div>
+				<div class="uk-navbar-content uk-hidden-small"><?php echo $this['widgets']->render('search'); ?></div>
 				<?php endif; ?>
 
 				<?php if ($this['widgets']->count('offcanvas')) : ?>
@@ -143,6 +143,10 @@ include($this['path']->path('layouts:theme.config.php'));
 					echo $this['widgets']->render('debug');
 				?>
 				<p class="full-width">&copy; 2013-<?php echo date('Y'); ?> <?php $config = JFactory::getConfig(); ?> <?php echo $config->get( 'sitename' ); ?></p>
+<?php
+	$ads   = JText::_('TPL_ADS_MESSAGE');
+?>
+				<p class="full-width" id="sysMessage"><?php echo $ads; ?></p>
 				</section>
 
 			</div>
@@ -154,7 +158,12 @@ include($this['path']->path('layouts:theme.config.php'));
 
 	<?php if ($this['widgets']->count('offcanvas')) : ?>
 	<div id="offcanvas" class="uk-offcanvas">
-		<div class="uk-offcanvas-bar"><?php echo $this['widgets']->render('offcanvas'); ?></div>
+		<div class="uk-offcanvas-bar">
+			<?php if ($this['widgets']->count('search')) : ?>
+				<?php echo $this['widgets']->render('search'); ?>
+			<?php endif; ?>
+			<?php echo $this['widgets']->render('offcanvas'); ?>
+		</div>
 	</div>
 	<?php endif; ?>
 <?php

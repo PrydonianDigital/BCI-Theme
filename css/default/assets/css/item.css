@@ -22,7 +22,7 @@
 	padding: 10px;
 	color: #111;
 }
-#yoo-zoo .items .width50 .teaser-item .pos-title {
+#yoo-zoo .teaser-item h2.pos-title {
 	margin-top: 0;
 }
 #yoo-zoo .items .width50 .teaser-item .pos-links {
@@ -58,14 +58,6 @@ div.pos-announcements {
 	border: 5px solid #e0e0e0;
 	border-top: none;
 }
-div.pos-announcements a {
-	color: #fff !important;
-	text-decoration: none !important;
-}
-div.pos-announcements a:hover {
-	color: #fff !important;
-	text-decoration: underline !important;
-}
 .pos-qualifications, .pos-centre, .pos-fellowships, .pos-jobtitle, .pos-email {
 	font-weight: 700;
 	margin-bottom: 5px !important;
@@ -91,9 +83,6 @@ div.pos-announcements a:hover {
 .accordion-item .element div {
 	display: none;
 	padding: 10px;
-}
-.accordion-item .element:first-child div {
-	display: block;
 }
 .accordion-item .element h3 {
 	background: #2B167B !important;

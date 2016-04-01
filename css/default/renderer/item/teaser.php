@@ -16,6 +16,9 @@ $categoryInfo = $this->_item->getPrimaryCategory();
 foreach ($this->_item->getRelatedCategories(true) as $category) {
 	echo $category->alias . ' ';
 }
+foreach ($tags as $tag) {
+	echo $tag->name . ' ';
+}
 ?>">
 <?php if ($this->checkPosition('media')) : ?>
 <div class="pos-media <?php echo 'media-'.$view->params->get('template.items_media_alignment'); ?>">
