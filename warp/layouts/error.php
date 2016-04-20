@@ -18,7 +18,6 @@ include($this['path']->path('layouts:theme.config.php'));
 </head>
 
 <body class="<?php echo $this['config']->get('body_classes'); ?>">
-
 	<?php if ($this['widgets']->count('logo + headerbar')) : ?>
 	<div class="tm-headerbar uk-clearfix">
 
@@ -85,7 +84,11 @@ include($this['path']->path('layouts:theme.config.php'));
 						<h2 class="uk-h3 uk-text-muted"><?php echo $title; ?></h2>
 
 						<p><?php echo $message; ?></p>
-
+<?php
+$path = getcwd();
+ echo "Your Absolute Path is: ";
+ echo $path;
+?>
 					</article>
 
 				</main>

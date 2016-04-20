@@ -85,16 +85,16 @@ include($this['path']->path('layouts:theme.config.php'));
 			<?php if ($this['widgets']->count('main-top + main-bottom') || $this['config']->get('system_output', true)) : ?>
 			<div class="<?php echo $columns['main']['class'] ?>">
 
+					<?php if ($this['widgets']->count('breadcrumbs')) : ?>
+					<?php echo $this['widgets']->render('breadcrumbs'); ?>
+					<?php endif; ?>
+
 				<?php if ($this['widgets']->count('main-top')) : ?>
 				<section id="tm-main-top" class="<?php echo $grid_classes['main-top']; echo $display_classes['main-top']; ?>" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin><?php echo $this['widgets']->render('main-top', array('layout'=>$this['config']->get('grid.main-top.layout'))); ?></section>
 				<?php endif; ?>
 
 				<?php if ($this['config']->get('system_output', true)) : ?>
 				<main id="tm-content" class="tm-content">
-
-					<?php if ($this['widgets']->count('breadcrumbs')) : ?>
-					<?php echo $this['widgets']->render('breadcrumbs'); ?>
-					<?php endif; ?>
 
 					<?php echo $this['template']->render('content'); ?>
 

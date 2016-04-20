@@ -2,6 +2,13 @@
 
 jQuery(function($) {
 
+	$('#tm-content').html(function(i, html) {
+    	return html.
+		replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g,
+			'<div class="videoWrapper"><iframe width="853" height="480" src="http://www.youtube.com/embed/$1?rel=0&hd=1&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe></div>');
+
+});
+
 	var config = $('html').data('config') || {};
 
 	// Adblock detect
@@ -74,15 +81,6 @@ jQuery(function($) {
 		return false;
 	});
 
-	var accOpen = location.hash.replace('#', '');
-	$('h3[data-link="'+accOpen+'"]').addClass('open');
-	$('.tab-content[data-id="'+accOpen+'"]').show();
-	if(window.location.hash) {
-		$('html,body').animate({
-			scrollTop: $('h3[data-link="'+accOpen+'"]').offset().top
-		});
-	}
-
 	$('.uk-search-field').on('focus', function(){
 		$(this).addClass('focus');
 	});
@@ -112,10 +110,47 @@ jQuery(function($) {
 		);
 	});
 
-	if($('.bci-news').length) {
-		$(this).find('h3.uk-panel-title').html('<a href="/news-updates">Latest BCI news</a>');
+	if(exists($('.linky'))) {
+		$('.linky h3.uk-panel-title').html('<a href="/news-updates">Latest BCI news</a>');
 	}
 
+	// Filtering
+	if($('#filteringRes').length) {
+
+		$('#tm-content ul.zoo-list a').each(function(){
+			var tag = $(this).find('span').html(),
+				filter = tag.replace(/\s+/g, '-').toLowerCase()
+			if(filter == 'all') {
+				$(this).attr('data-filter', '*')
+			} else {
+				$(this).attr('data-filter', '.'+filter)
+			}
+		});
+
+		$('#tm-content ul.zoo-list a:first').addClass('active');
+
+		$.getScript('/templates/bci_theme/js/isotope.js')
+		.done(function(script, textStatus) {
+			var $grid = $('.items');
+			$grid.isotope({
+				itemSelector: '.view-all-researchers',
+				layoutMode: 'fitRows',
+			});
+			$('#tm-content ul.zoo-list').on( 'click', 'a', function(e) {
+				e.preventDefault();
+				$('ul.zoo-list a').removeClass('active');
+				$(this).addClass('active');
+				var filterValue = $(this).attr('data-filter');
+				$grid.isotope({ filter: filterValue });
+			});
+		})
+		.fail(function(jqxhr, settings, exception) {
+			console.log('Triggered ajaxError handler.');
+		});
+
+	}
+
+	// Filtering
 	if($('.product-default-all-staff').length) {
 
 		$('#tm-content ul.zoo-list a').each(function(){
@@ -127,7 +162,7 @@ jQuery(function($) {
 		$('.teaser-item .pos-links a').each(function(){
 			var $this = $(this),
 				tag = $(this).html(),
-					filter = tag.replace(/\s+/g, '-').toLowerCase();
+				filter = tag.replace(/\s+/g, '-').toLowerCase();
 			$this.parent().parent().parent().parent().addClass(filter)
 		});
 
@@ -145,6 +180,7 @@ jQuery(function($) {
 
 		$('ul.zoo-list li:eq(0)').before('<li><a href="#" data-filter="*" class="active">All</li>');
 
+	// Filtering
 		$.getScript('/templates/bci_theme/js/isotope.js')
 		.done(function(script, textStatus) {
 			var $grid = $('.items');
@@ -165,6 +201,7 @@ jQuery(function($) {
 		});
 	}
 
+	// Filtering
 	if($('#filtering').length) {
 		$.getScript('/templates/bci_theme/js/isotope.js')
 		.done(function(script, textStatus) {
@@ -186,9 +223,49 @@ jQuery(function($) {
 		});
 	}
 
+	// Accordion formatting
+	$('#tm-content').html(function(index, text) {
+		return text.split('[accordion]').join('<div class="accordion-item"><div class="element">').split('[/accordion]').join('</div></div>');
+	});
+
+	var pageLink = window.location.pathname;
+
+	$('.accordion-item .element h3').each(function() {
+		var $this = $(this),
+			tag = $this.html(),
+			filter = tag.replace(/["~!@#$%^&*\(\)_+=`{}\[\]\|\\:;'<>,.\/?"\- \t\r\n]+/g, '-').toLowerCase();
+		$this.attr('data-id', filter);
+		$this.next().attr('data-target', filter);
+		$this.append('<a href="'+pageLink+'#'+filter+'" target="_blank" title="Copy direct link to this item"><i class="bci-link"></i></a>');
+	});
+
+	$('.accordion-item .element h3').next().hide();
+
+	$('.accordion-item .element').on('click', 'h3:not(.open)', function(){
+		$('.accordion-item .element h3').removeClass('open').next().slideUp('200');
+		$(this).addClass('open').next().slideDown('200');
+	});
+
+	$('.accordion-item .element').on('click', 'h3.open', function(){
+		$('.accordion-item .element h3').removeClass('open').next().slideUp('200');
+		$(this).next().slideUp('200');
+	});
+
+	var accOpen = location.hash.replace('#', '');
+	$('.accordion-item .element h3[data-id="'+accOpen+'"]').addClass('open');
+	$('.accordion-item .element div[data-target="'+accOpen+'"]').slideDown('200');
+	if(window.location.hash) {
+		$('html,body').animate({
+			scrollTop: $('h3[data-id="'+accOpen+'"]').offset().top
+		}, 200);
+	}
+
 });
 
-
+function exists(data) {
+	if(!data || data==null || data=='undefined' || typeof(data)=='undefined') return false;
+	else return true;
+}
 
 /*!
  * JavaScript Cookie v2.1.0

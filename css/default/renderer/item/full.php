@@ -83,15 +83,15 @@ defined('_JEXEC') or die('Restricted access');
 		</div>
 		<?php endif; ?>
 
-		<?php if ($this->checkPosition('bottom')) : ?>
-		<div class="pos-bottom">
-			<?php echo $this->renderPosition('bottom', array('style' => 'block')); ?>
-		</div>
-		<?php endif; ?>
-
 		<?php if ($this->checkPosition('related')) : ?>
 		<div class="pos-related">
 			<?php echo $this->renderPosition('related', array('style' => 'block')); ?>
+		</div>
+		<?php endif; ?>
+
+		<?php if ($this->checkPosition('bottom')) : ?>
+		<div class="pos-bottom">
+			<?php echo $this->renderPosition('bottom', array('style' => 'block')); ?>
 		</div>
 		<?php endif; ?>
 
