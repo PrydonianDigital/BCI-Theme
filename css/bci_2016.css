@@ -1028,12 +1028,10 @@ modules .zoo-item-list .layout-default:first-child {
 #yoo-zoo.product-default .row .centre-for-experimental-cancer-medicine,
 #yoo-zoo.product-default .row .centre-for-tumour-biology,
 #yoo-zoo.product-default .row .centre-for-molecular-oncology,
-#yoo-zoo.product-default .row .centre-for-stem-cells-cancer-ageing {
+#yoo-zoo.product-default .row .centre-for-stem-cells-in-cancer-and-ageing {
 	padding: 20px;
 }
-#yoo-zoo.product-default .row .directors-office {
-	background: #D0BF6A;
-}
+
 #yoo-zoo.product-default .row div[class*='centre-lead'] {
 	background: #e0e0e0;
 }
@@ -1392,12 +1390,26 @@ span.highlight {
 	left: 0;
 	z-index: 2;
 }
-@media screen and (max-width: 768px) {
-	#grid .centre, #grid .strength {
-		width: 48%;
-		max-height: 330px;
-	}
+#desktopFilters {
+	display: none;
 }
+#showFilters {
+	cursor: pointer;
+	padding: 10px 0;
+}
+#showFilters:before {
+	font-family: 'bci';
+	content: "\f055";
+	font-size: 20px;
+	margin-right: 5px;
+}
+#showFilters.active:before {
+	font-family: 'bci';
+	content: "\f056";
+	font-size: 20px;
+	margin-right: 5px;
+}
+
 @media screen and (max-width: 500px) {
 	#grid .centre, #grid .strength {
 		width: 98%;
@@ -1408,6 +1420,8 @@ span.highlight {
 a[title="Print"], a[title="Email"] {
 	display: none;
 }
+
+
 
 /* ==================== CENTRE LEAD ==================== */
 
@@ -1527,4 +1541,17 @@ form div, .accordion-item .element div form div {
 	border-radius: 0 !important;
 	color: #222222 !important;
 	text-shadow: none !important;
+}
+
+/* ==================== jCAL ==================== */
+
+.jcal_category.label, .eventtitle.label {
+	font-size: 12px !important;
+	text-decoration: none !important;
+	padding: 3px 8px !important;
+	color: #fff !important;
+	border-radius: 0 !important;
+}
+.jcal_category.label.dark, .eventtitle.label.dark {
+	color: #111 !important;
 }

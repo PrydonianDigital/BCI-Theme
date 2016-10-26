@@ -19,7 +19,7 @@ foreach ($this->_item->getRelatedCategories(true) as $category) {
 foreach ($tags as $tag) {
 	echo $tag->name . ' ';
 }
-?>">
+?> <?php echo $this->_item->getPrimaryCategory()->alias; ?>">
 <?php if ($this->checkPosition('media')) : ?>
 <div class="pos-media <?php echo 'media-'.$view->params->get('template.items_media_alignment'); ?>">
 	<?php echo $this->renderPosition('media'); ?>

@@ -24,15 +24,15 @@ $css_class = $this->application->getGroup().'-'.$this->template->name;
 	<?php if ($this->params->get('template.show_alpha_index')) : ?>
 		<?php echo $this->partial('alphaindex'); ?>
 	<?php endif; ?>
-	
+
 	<?php
 
 		// render items
 		if (count($this->items)) {
-			$itemstitle = JText::_('Items tagged with').' '.strtoupper($this->tag);
+			$itemstitle = JText::_('Researchers working on').' '.strtoupper($this->tag);
 			echo $this->partial('items', compact('itemstitle'));
 		}
-		
+
 	?>
 
 </div>

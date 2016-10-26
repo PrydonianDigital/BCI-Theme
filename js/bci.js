@@ -111,7 +111,7 @@ jQuery(function($) {
 	});
 
 	if(exists($('.linky'))) {
-		$('.linky h3.uk-panel-title').html('<a href="/news-updates">Latest BCI news</a>');
+		$('.linky h3.uk-panel-title').html('<a href="/news">Latest BCI news</a>');
 	}
 
 	// Filtering
@@ -153,8 +153,14 @@ jQuery(function($) {
 	// Filtering
 	if($('.product-default-all-staff').length) {
 
-		$('#tm-content ul.zoo-list a').each(function(){
+		$('#tm-content .stafftags ul.zoo-list a').each(function(){
 			var tag = $(this).html(),
+				filter = tag.replace(/\s+/g, '-').toLowerCase()
+			$(this).attr('data-filter', '.'+filter)
+		});
+
+		$('#tm-content .staffcats ul.zoo-list a').each(function(){
+			var tag = $(this).text(),
 				filter = tag.replace(/\s+/g, '-').toLowerCase()
 			$(this).attr('data-filter', '.'+filter)
 		});
@@ -167,6 +173,9 @@ jQuery(function($) {
 		});
 
 		$('.teaser-item').each(function(){
+			var $this = $(this).children(),
+				$thisClass = $this.attr('class');
+			$(this).addClass($thisClass);
 			if($('.pos-specification li:contains("PhD")')) {
 				$(this).parent().parent().parent().parent().addClass('PhD');
 			}
@@ -188,12 +197,19 @@ jQuery(function($) {
 				itemSelector: '.teaser-item',
 				layoutMode: 'fitRows',
 			});
-			$('#tm-content ul.zoo-list').on( 'click', 'a', function(e) {
+			$('#tm-content .stafftags ul.zoo-list').on( 'click', 'a', function(e) {
 				e.preventDefault();
 				$('ul.zoo-list a').removeClass('active');
 				$(this).addClass('active');
 				var filterValue = $(this).attr('data-filter');
-				$grid.isotope({ filter: filterValue });
+				$grid.isotope({ itemSelector: '.teaser-item', filter: filterValue });
+			});
+			$('#tm-content .staffcats ul.zoo-list').on( 'click', 'a', function(e) {
+				e.preventDefault();
+				$('ul.zoo-list a').removeClass('active');
+				$(this).addClass('active');
+				var filterValue = $(this).attr('data-filter');
+				$grid.isotope({ itemSelector: '.all-staff', filter: filterValue });
 			});
 		})
 		.fail(function(jqxhr, settings, exception) {
@@ -260,7 +276,15 @@ jQuery(function($) {
 		}, 200);
 	}
 
+	$('#showFilters').on('click', function(){
+		var txt = $('#desktopFilters').is(':visible') ? 'Show Staff Filters' : 'Hide Staff Filters';
+		$('#showFilters').text(txt);
+		$('#desktopFilters').slideToggle();
+		$(this).toggleClass('active');
+	});
+
 });
+
 
 function exists(data) {
 	if(!data || data==null || data=='undefined' || typeof(data)=='undefined') return false;
